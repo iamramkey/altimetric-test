@@ -18,7 +18,7 @@
     <div class="col-xs-10">
       <input
         type="text"
-        placeholder="Search"
+        placeholder="Search..."
         class="form-control"
         [(ngModel)]="search"
         (input)="onSearchValueChange($event)"
@@ -73,23 +73,22 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="profileForm" class="clearfix">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <label>
                 First Name:
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control "
                   formControlName="first_name"
                 />
               </label>
-              <div *ngIf="!(profileForm && profileForm?.controls?.first_name?.touched && profileForm?.controls?.first_name?.errors)"></div>
               <ng-container *ngIf="profileForm && profileForm?.controls?.first_name?.touched && profileForm?.controls?.first_name?.errors">
                   <div class="text-danger" *ngIf="profileForm?.controls?.first_name?.errors?.required">First Name is required</div>
                   <div class="text-danger" *ngIf="profileForm?.controls?.first_name?.errors?.minlength">First Name should contain minimum {{ profileForm?.controls?.first_name?.errors?.minlength?.requiredLength }} characters</div>
               </ng-container>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <label>
                 Last Name:
                 <input
@@ -104,7 +103,7 @@
               </ng-container>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <label>
                 Email:
                 <input
@@ -119,7 +118,7 @@
               </ng-container>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <label>
                 Gender:
                 <select class="form-control" formControlName="gender">
@@ -130,7 +129,7 @@
               </label>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <label>
                 IP Address:
                 <input
@@ -141,7 +140,7 @@
               </label>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <label>
                 Mac Address:
                 <input
@@ -160,6 +159,10 @@
                   formControlName="address"
                 ></textarea>
               </label>
+              <ng-container *ngIf="profileForm && profileForm?.controls?.address?.touched && profileForm?.controls?.address?.errors">
+                  <div class="text-danger" *ngIf="profileForm?.controls?.address?.errors?.required">Address is required</div>
+                  <div class="text-danger" *ngIf="profileForm?.controls?.address?.errors?.minlength">Address should contain minimum {{ profileForm?.controls?.address?.errors?.minlength?.requiredLength }} characters</div>
+              </ng-container>
             </div>
           </form>
         </div>
