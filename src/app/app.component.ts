@@ -74,9 +74,10 @@ export class AppComponent {
           var dlt = document.createElement("button");
           edit.className = "btn btn-info btn-xs";
           dlt.className = "btn btn-danger btn-xs";
-          edit.innerHTML = '<span class="glyphicon glyphicon-pencil"></span>';
+          edit.innerHTML = '<span class="glyphicon glyphicon-pencil"></span> Edit';
           dlt.innerHTML =
-            '<span class="glyphicon glyphicon-ban-circle"></span>';
+            'Delete';
+          dlt.style.marginLeft = '5px';
           edit.addEventListener("click", this.onEditClick.bind(this, params));
           dlt.addEventListener("click", this.onDeleteClick.bind(this, params));
           div.appendChild(edit);
