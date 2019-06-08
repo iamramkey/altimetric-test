@@ -1,0 +1,70 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/">
+        <img
+          alt="{{ APPLICATION_MAIN_TITLE }} Logo"
+          src="assets/after-math.png"
+        />
+      </a>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<div style="height: calc(100% - 72px)">
+  <div class="search">
+    <div class="col-xs-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="search"
+        (input)="onSearchValueChange($event)"
+      />
+    </div>
+    <div class="col-xs-2">
+      <button
+        class="btn btn-primary btn-block"
+        [disabled]="
+          appModel?.emplyeesList?.length < 1 || search?.trim()?.length < 1
+        "
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  <ag-grid-angular
+    style="width: 100%; height: calc(100% - 54px)"
+    class="ag-theme-balham"
+    [gridOptions]="gridOptions"
+    [debug]="true"
+  >
+  </ag-grid-angular>
+</div>
+
+<!-- Modal -->
+<ng-container *ngIf="editUser">
+  <div class="modal-backdrop fade in" [ngClass]="[editUser ? 'in' : '']"></div>
+  <div class="modal fade" id="myModal" role="dialog" style="display: block;" [ngClass]="[editUser ? 'in' : '']">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

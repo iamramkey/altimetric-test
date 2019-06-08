@@ -1,0 +1,1 @@
+export const APPLICATION_MAIN_TITLE = 'Employees List'
