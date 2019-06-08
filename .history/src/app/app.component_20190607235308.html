@@ -1,0 +1,173 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/">
+        <img
+          alt="{{ APPLICATION_MAIN_TITLE }} Logo"
+          src="assets/after-math.png"
+        />
+      </a>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<div style="height: calc(100% - 72px)">
+  <div class="search">
+    <div class="col-xs-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="search"
+        (input)="onSearchValueChange($event)"
+      />
+    </div>
+    <div class="col-xs-2">
+      <button
+        class="btn btn-primary"
+        [disabled]="
+          appModel?.emplyeesList?.length < 1 || search?.trim()?.length < 1
+        "
+      >
+        Search
+      </button>
+      <button
+        class="btn btn-info"
+        (click)="createNewUser()"
+        style="margin-left: 2px;"
+      >
+        Create
+      </button>
+    </div>
+  </div>
+  <ag-grid-angular
+    style="width: 100%; height: calc(100% - 54px)"
+    class="ag-theme-balham"
+    [gridOptions]="gridOptions"
+    [debug]="true"
+  >
+  </ag-grid-angular>
+</div>
+
+<!-- Modal -->
+<ng-container *ngIf="editUser">
+  <div class="modal-backdrop fade" [ngClass]="[editUser ? 'in' : '']"></div>
+  <div
+    class="modal fade"
+    id="myModal"
+    role="dialog"
+    style="display: block;"
+    [ngClass]="[editUser ? 'in' : '']"
+  >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+          <h4 class="modal-title">
+            {{ editUser ? "Edit User" : "Create User" }}
+          </h4>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="profileForm" class="clearfix">
+            <div class="col-xs-6">
+              <label>
+                First Name:
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="firstName"
+                />
+              </label>
+            </div>
+
+            <div class="col-xs-6">
+              <label>
+                Last Name:
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="lastName"
+                />
+              </label>
+            </div>
+
+            <div class="col-xs-6">
+              <label>
+                Email:
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                />
+              </label>
+            </div>
+
+            <div class="col-xs-6">
+              <label>
+                Gender:
+                <select class="form-control" formControlName="gender">
+                  <option value="">Please select any gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="col-xs-6">
+              <label>
+                IP Address:
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="ipAddress"
+                />
+              </label>
+            </div>
+
+            <div class="col-xs-6">
+              <label>
+                Mac Address:
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="macAddress"
+                />
+              </label>
+            </div>
+
+            <div class="col-xs-12">
+              <label>
+                Address:
+                <textarea
+                  class="form-control"
+                  formControlName="address"
+                ></textarea>
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-dismiss="modal"
+            (click)="editUser = null"
+          >
+            Close
+          </button>
+          <button
+            (click)="saveUser(editUser)"
+            class="btn btn-primary"
+            data-dismiss="modal"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
