@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class DataService {
-  configUrl = "assets/employees.json";
+  configUrl = "https://raw.githubusercontent.com/iamramkey/altimetric/master/src/assets/employees.json";
   constructor(private http: HttpClient) {}
 
   getConfig() {

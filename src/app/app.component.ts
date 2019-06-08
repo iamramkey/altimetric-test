@@ -29,7 +29,8 @@ export class AppComponent {
         Validators.required,
         Validators.minLength(3)
       ]),
-      email: new FormControl(null, [Validators.email]),
+      email: new FormControl(null, [
+        Validators.required, Validators.email]),
       gender: new FormControl(null, [Validators.required]),
       ip_address: new FormControl(null),
       mac_address: new FormControl(null),
